@@ -1,0 +1,6 @@
+-r requirements.txt
+
+# Only needed to re-run scripts/import_figures.py after figures are regenerated
+# in URBADAPT-HEAT. The optimized figures are committed, so the site builds
+# without this.
+Pillow>=11,<13

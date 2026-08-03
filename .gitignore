@@ -1,0 +1,17 @@
+# Built site
+site/
+
+# Wiki content is synced at build time, never committed — the GitHub wiki
+# (https://github.com/URBADAPT/URBADAPT-HEAT/wiki) is the single source of truth.
+docs/heat/
+.wiki-cache/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+Thumbs.db

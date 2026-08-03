@@ -1,0 +1,6 @@
+# Site build dependencies. Pinned so CI and local builds agree.
+# This is everything `mkdocs build` needs; see requirements-dev.txt for the
+# figure-import tooling, which CI does not run.
+mkdocs==1.6.1
+mkdocs-material==9.6.9
+pymdown-extensions==10.14.3

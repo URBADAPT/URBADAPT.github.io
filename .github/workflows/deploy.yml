@@ -1,0 +1,64 @@
+name: Build and deploy site
+
+on:
+  # Changes to the website itself.
+  push:
+    branches: [main]
+
+  # Wiki edits don't touch this repository, so rebuild on a schedule to pick
+  # them up. 05:17 UTC daily — off the hour to avoid GitHub's scheduling peak.
+  schedule:
+    - cron: "17 5 * * *"
+
+  # Manual rebuild, and the hook the wiki-watcher workflow in URBADAPT-HEAT
+  # fires so that a wiki edit publishes within a minute instead of next day.
+  workflow_dispatch:
+  repository_dispatch:
+    types: [wiki-updated]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Sync documentation from the URBADAPT-HEAT wiki
+        run: python scripts/sync_wiki.py
+
+      - name: Build site
+        # --strict turns broken internal links and nav warnings into errors.
+        run: mkdocs build --strict
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
