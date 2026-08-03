@@ -138,5 +138,5 @@ If you use URBADAPT-HEAT, please cite the framework description:
 > framework for city-level public–private adaptation infrastructure cost-benefit
 > analysis and its urban heat risk implementation*, in preparation, 2026.
 
-Full citation details, the model's data sources, and contact information are on the
-[About](about.md) page.
+Full citation details and the model's data sources are on the [About](about.md)
+page; the people behind URBADAPT and how to reach them are on [Team](team.md).

@@ -5,10 +5,9 @@ title: About
 # About URBADAPT
 
 URBADAPT is a modular open-source architecture for **city-level climate risk
-assessment and adaptation investment appraisal**, developed at the
-[CMCC Foundation](https://www.cmcc.it) and the
-[European Institute on Economics and the Environment (EIEE)](https://www.eiee.org),
-with contributions from [IIASA](https://iiasa.ac.at).
+assessment and adaptation investment appraisal**, developed in the
+[ECIP Division](https://www.cmcc.it/what-we-do/institutes/european-institute-on-economics-and-the-environment-eiee/economic-analysis-of-climate-impacts-and-policy-division)
+of the [CMCC Foundation](https://www.cmcc.it) — see [Team](team.md).
 
 The design goal is that the same analytical code runs unchanged across cities and,
 increasingly, across hazards. Everything city-specific — climate inputs,
@@ -21,11 +20,6 @@ file and a data manifest, never in the model code.
 |---|---|---|
 | [URBADAPT-HEAT](heat/index.md) | Urban heat | v1.0, public |
 | URBADAPT-FLOOD | Flooding | In development, not yet public |
-
-## Authors
-
-- **Armande Aboudrar-Méda** — CMCC · EIEE
-- **Giacomo Falchetta** — CMCC · EIEE, IIASA — [giacomo.falchetta@cmcc.it](mailto:giacomo.falchetta@cmcc.it)
 
 ## Citation
 
