@@ -11,8 +11,8 @@ hide:
 
 <p class="urb-hero__tagline">
 Open-source geospatial frameworks for <strong>city-level climate risk assessment</strong>
-and <strong>public–private adaptation cost-benefit analysis</strong> — reproducible,
-city-agnostic, and built on CLIMADA.
+and <strong>public–private adaptation cost-benefit analysis</strong> — reproducible
+and city-agnostic.
 </p>
 
 <div class="urb-hero__buttons" markdown>
