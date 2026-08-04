@@ -6,7 +6,7 @@ of truth for documentation content. This script clones it and rewrites its
 links so the pages work as a MkDocs site:
 
   * ``[Text](Page-Name)``      -> ``[Text](page-name.md)``   (wiki page links)
-  * ``[Text](Home)``           -> ``[Text](../index.md)``    (wiki home -> landing)
+  * ``[Text](Home)``           -> ``[Text](../urbadapt-heat.md)``  (superseded page)
   * ``[Text](../blob/main/X)`` -> absolute github.com URL    (repo-relative links)
   * ``[[Page]]``               -> ``[Page](page.md)``        (wikilink syntax)
 
@@ -40,7 +40,6 @@ REPO_WEB = "https://github.com/URBADAPT/URBADAPT-HEAT"
 # both directions are checked below, so adding a wiki page without wiring it
 # into the nav is caught at build time rather than silently dropped.
 PAGE_MAP: dict[str, str] = {
-    "Home": "index.md",
     "Installation": "installation.md",
     "Framework-Overview": "framework-overview.md",
     "Hazard": "hazard.md",
@@ -52,6 +51,15 @@ PAGE_MAP: dict[str, str] = {
     "Uncertainty-Analysis": "uncertainty-analysis.md",
     "City-Configuration": "city-configuration.md",
     "Case-Studies": "case-studies.md",
+}
+
+# Wiki pages that the site replaces with its own hand-written page. They are
+# still valid link targets — links to them are redirected to the replacement —
+# but they are not copied into docs/heat/, so the same material is not
+# published twice. Paths are relative to docs/heat/.
+SUPERSEDED: dict[str, str] = {
+    # The wiki landing page duplicates docs/urbadapt-heat.md.
+    "Home": "../urbadapt-heat.md",
 }
 
 # Markdown inline links whose target has no scheme and no leading slash — i.e.
@@ -84,6 +92,9 @@ def resolve_target(target: str, source_page: str) -> str:
     if target.endswith(".md"):
         return target + anchor
 
+    if target in SUPERSEDED:
+        return SUPERSEDED[target] + anchor
+
     if target not in PAGE_MAP:
         raise SyncError(
             f"{source_page}: link to unknown wiki page {target!r}.\n"
@@ -91,9 +102,6 @@ def resolve_target(target: str, source_page: str) -> str:
             f"scripts/sync_wiki.py needs updating."
         )
 
-    # All pages, including Home, resolve within docs/heat/. The wiki Home
-    # becomes the documentation section's overview page; the site's own landing
-    # page (docs/index.md) is hand-written and separate.
     return PAGE_MAP[target] + anchor
 
 
@@ -176,10 +184,10 @@ def main() -> int:
 
         # Fail loudly if the wiki gained or lost pages.
         found = {p.stem for p in wiki.glob("*.md")}
-        expected = set(PAGE_MAP)
+        expected = set(PAGE_MAP) | set(SUPERSEDED)
         if missing := sorted(expected - found):
             raise SyncError(
-                "wiki pages listed in PAGE_MAP but absent from the wiki: "
+                "pages listed in PAGE_MAP/SUPERSEDED but absent from the wiki: "
                 + ", ".join(missing)
             )
         if extra := sorted(found - expected):
@@ -204,6 +212,8 @@ def main() -> int:
         for page, filename in sorted(PAGE_MAP.items()):
             (OUTPUT_DIR / filename).write_text(rendered[filename], encoding="utf-8")
             print(f"  {page:<24} -> heat/{filename}")
+        for page, replacement in sorted(SUPERSEDED.items()):
+            print(f"  {page:<24} -> skipped, superseded by {replacement}")
 
         for problem in check_nav_coverage():
             print(f"\nWARNING: {problem}", file=sys.stderr)

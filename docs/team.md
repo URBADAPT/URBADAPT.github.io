@@ -8,8 +8,7 @@ URBADAPT is developed at the **[CMCC Foundation](https://www.cmcc.it)** — the 
 Center on Climate Change — within the
 **[ECIP Division](https://www.cmcc.it/what-we-do/institutes/european-institute-on-economics-and-the-environment-eiee/economic-analysis-of-climate-impacts-and-policy-division)**
 (Economic analysis of Climate Impacts and Policy), part of the
-[European Institute on Economics and the Environment (EIEE)](https://www.eiee.org)
-in Venezia Marghera.
+[European Institute on Economics and the Environment (EIEE)](https://www.eiee.org).
 
 ECIP's work centres on translating the physical impacts of climate change into
 economic terms and on evaluating the policies available to adapt to them.
@@ -30,7 +29,7 @@ table.
 
     **Principal Investigator**
 
-    CMCC · EIEE (ECIP Division) and [IIASA](https://iiasa.ac.at)
+    CMCC · EIEE (ECIP Division)
 
     Leads the URBADAPT programme: research direction, framework design, and the
     economic appraisal of adaptation investment.
@@ -71,5 +70,4 @@ stay visible to everyone using the framework.
 |---|---|
 | [CMCC Foundation](https://www.cmcc.it) | Euro-Mediterranean Center on Climate Change |
 | [EIEE](https://www.eiee.org) | European Institute on Economics and the Environment, CMCC |
-| [ECIP Division](https://www.cmcc.it/what-we-do/institutes/european-institute-on-economics-and-the-environment-eiee/economic-analysis-of-climate-impacts-and-policy-division) | Economic analysis of Climate Impacts and Policy, Venezia Marghera |
-| [IIASA](https://iiasa.ac.at) | International Institute for Applied Systems Analysis, Laxenburg |
+| [ECIP Division](https://www.cmcc.it/what-we-do/institutes/european-institute-on-economics-and-the-environment-eiee/economic-analysis-of-climate-impacts-and-policy-division) | Economic analysis of Climate Impacts and Policy |

@@ -11,12 +11,26 @@ deployed to GitHub Pages by [`.github/workflows/deploy.yml`](.github/workflows/d
 |---|---|---|
 | Documentation pages | [URBADAPT-HEAT wiki](https://github.com/URBADAPT/URBADAPT-HEAT/wiki) | Cloned and link-rewritten at build time by `scripts/sync_wiki.py`. **Never committed** — `docs/heat/` is gitignored. |
 | Figures | [URBADAPT-HEAT](https://github.com/URBADAPT/URBADAPT-HEAT) (`reporting` branch) | Imported and downscaled once by `scripts/import_figures.py`. **Committed**, because the figures live on a research branch that may be merged away. |
-| Landing page, gallery, about | This repository | Hand-written: `docs/index.md`, `docs/gallery.md`, `docs/about.md`. |
+| Landing, implementation and team pages | This repository | Hand-written: `docs/index.md`, `docs/urbadapt-heat.md`, `docs/team.md`. |
+
+`docs/index.md` is deliberately framework-level: anything specific to the heat
+implementation belongs on `docs/urbadapt-heat.md`, so that further
+implementations can be added without rewriting the landing page.
 
 > [!IMPORTANT]
 > The wiki is the single source of truth for documentation. To change a
 > documentation page, **edit the wiki**, not `docs/heat/` — anything written
 > there is deleted on the next sync.
+
+The wiki's `Home` page is the one exception: it duplicates
+`docs/urbadapt-heat.md`, so `SUPERSEDED` in `scripts/sync_wiki.py` excludes it
+from the sync and redirects any link to it. It is still required to exist.
+
+### Results gallery
+
+A results gallery page existed and was removed; only `workflow_diagram.webp` is
+currently displayed. The other twelve figures in `docs/assets/figures/` are kept
+committed so the page can be restored without re-running the import.
 
 ## Local development
 
@@ -59,7 +73,8 @@ becomes ~2.4 MB). It also rebuilds the logo assets and favicon from
 `scripts/sync_wiki.py` fails the build if the wiki and the site disagree, rather
 than shipping dead links. When you add or rename a wiki page:
 
-1. Add it to `PAGE_MAP` in `scripts/sync_wiki.py`.
+1. Add it to `PAGE_MAP` in `scripts/sync_wiki.py` (or to `SUPERSEDED` if a
+   hand-written page on this site replaces it).
 2. Add it to the `nav:` block in `mkdocs.yml`.
 
 The sync errors out on a wiki page missing from `PAGE_MAP`, on a `PAGE_MAP` entry

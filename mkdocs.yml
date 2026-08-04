@@ -5,7 +5,7 @@ site_description: >-
 site_url: https://urbadapt.github.io/
 site_author: Armande Aboudrar-Méda, Giacomo Falchetta
 copyright: >-
-  CMCC · EIEE · IIASA — released under
+  CMCC · EIEE · ECIP Division — released under
   <a href="https://github.com/URBADAPT/URBADAPT-HEAT/blob/main/LICENSE">CC0 1.0</a>
 
 repo_url: https://github.com/URBADAPT/URBADAPT-HEAT
@@ -106,10 +106,9 @@ plugins:
 # Run `python scripts/sync_wiki.py` before `mkdocs serve` or `mkdocs build`.
 nav:
   - Home: index.md
-  - Documentation:
-      - Getting started:
-          - Overview: heat/index.md
-          - Installation & usage: heat/installation.md
+  - URBADAPT-HEAT:
+      - Overview: urbadapt-heat.md
+      - Installation & usage: heat/installation.md
       - Framework:
           - Framework overview: heat/framework-overview.md
           - Hazard: heat/hazard.md
@@ -123,6 +122,4 @@ nav:
       - Cities:
           - City configuration: heat/city-configuration.md
           - Case studies: heat/case-studies.md
-  - Results gallery: gallery.md
   - Team: team.md
-  - About: about.md
