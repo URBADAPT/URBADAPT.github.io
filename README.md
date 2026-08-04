@@ -22,13 +22,9 @@ implementations can be added without rewriting the landing page.
 > documentation page, **edit the wiki**, not `docs/heat/` — anything written
 > there is deleted on the next sync.
 
-Two wiki constructs are handled specially by `scripts/sync_wiki.py`:
-
-- **`Home`** duplicates `docs/urbadapt-heat.md`, so `SUPERSEDED` excludes it from
-  the sync and redirects any link to it. It is still required to exist.
-- **`<!-- wiki-only -->` … `<!-- /wiki-only -->`** blocks are stripped. Every wiki
-  page uses one for a banner linking to its published counterpart, which on the
-  site itself would link to the page the reader is already on.
+The wiki's `Home` page is the one exception: it duplicates
+`docs/urbadapt-heat.md`, so `SUPERSEDED` in `scripts/sync_wiki.py` excludes it
+from the sync and redirects any link to it. It is still required to exist.
 
 ### Results gallery
 

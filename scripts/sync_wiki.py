@@ -68,12 +68,6 @@ SUPERSEDED: dict[str, str] = {
 INLINE_LINK = re.compile(r"(?<!!)\[([^\]]+)\]\((?!https?://|mailto:|#|/)([^)\s]+)\)")
 WIKILINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 
-# Content the wiki shows but the website must not. Each wiki page carries a
-# banner pointing readers at the published site; on the published site itself
-# that banner would be a link to the page you are already reading, so it is
-# stripped here.
-WIKI_ONLY = re.compile(r"[ \t]*<!--\s*wiki-only\s*-->.*?<!--\s*/wiki-only\s*-->[ \t]*\n?", re.S)
-
 
 class SyncError(Exception):
     """A wiki link could not be resolved, or the wiki is out of sync."""
@@ -123,7 +117,6 @@ def rewrite(text: str, source_page: str) -> str:
         label = (match.group(2) or target).strip()
         return f"[{label}]({resolve_target(target, source_page)})"
 
-    text = WIKI_ONLY.sub("", text)
     text = WIKILINK.sub(wikilink, text)
     text = INLINE_LINK.sub(inline, text)
     return text
