@@ -1,5 +1,4 @@
 ---
-title: URBADAPT
 hide:
   - navigation
   - toc
