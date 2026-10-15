@@ -48,6 +48,29 @@ table.
     processing chain, the `cityheat` package, and the city-agnostic notebook
     workflow.
 
+-   :material-account-tie:{ .lg .middle } __Enrica De Cian__
+
+    ---
+
+    **URBADAPT advisor**
+
+    CMCC · EIEE (ECIP Division) · Ca' Foscari University of Venice
+
+    Full Professor of Environmental Economics. Works on the economics of
+    climate impacts and on energy use for adaptation.
+
+-   :material-account-tie:{ .lg .middle } __Massimo Tavoni__
+
+    ---
+
+    **URBADAPT advisor**
+
+    Director, EIEE · CMCC · Politecnico di Milano
+
+    Full Professor at the School of Management, Politecnico di Milano. Works on
+    climate policy, integrated assessment modelling, and the economics of the
+    low-carbon transition.
+
 </div>
 
 ---
