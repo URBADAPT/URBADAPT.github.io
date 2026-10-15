@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Import branding and publication figures from a local URBADAPT-HEAT checkout.
+"""Import branding and figures from a local URBADAPT-HEAT checkout.
 
-The figures live on the ``reporting`` branch of URBADAPT/URBADAPT-HEAT, not on
-``main``, so fetching them at build time would break the site the moment that
-branch is merged or deleted. Instead we import web-optimized copies once and
-commit them. Re-run this script whenever the figures are regenerated:
+The figures are generated into ``visual_items/`` of URBADAPT/URBADAPT-HEAT, which
+tracks the code that draws them but not the images, so they cannot be fetched at
+build time. Instead we import web-optimized copies once and commit them. Re-run
+this script, from a checkout where the figures have been generated, whenever
+they change:
 
     python scripts/import_figures.py --source ../URBADAPT-HEAT
 
@@ -39,21 +40,19 @@ WEBP_QUALITY = 90
 
 # (source path relative to URBADAPT-HEAT, destination stem)
 FIGURE_SOURCES: list[tuple[str, str]] = [
-    # Framework / methods figures (GMD manuscript)
     ("diagram.png", "workflow_diagram"),
-    ("gmd_visual_items/fig_hazard_t2m_maps_rome.png", "gmd_hazard_t2m_rome"),
-    ("gmd_visual_items/fig_exposure_population_rome.png", "gmd_exposure_rome"),
-    ("gmd_visual_items/fig_svi_components_rome.png", "gmd_svi_rome"),
-    ("gmd_visual_items/fig_ac_penetration_maps_rome.png", "gmd_ac_penetration_rome"),
-    ("gmd_visual_items/fig_policy_levers.png", "gmd_policy_levers"),
-    ("gmd_visual_items/fig_cba_dashboard.png", "gmd_cba_dashboard"),
-    # Cross-city results figures (Nature Cities manuscript)
-    ("natcities_visual_items/figures/fig1_risk_effectiveness.png", "nc_fig1_risk_effectiveness"),
-    ("natcities_visual_items/figures/fig2_distribution.png", "nc_fig2_distribution"),
-    ("natcities_visual_items/figures/fig3_synergies.png", "nc_fig3_synergies"),
-    ("natcities_visual_items/figures/exemplar_amsterdam.png", "nc_exemplar_amsterdam"),
-    ("natcities_visual_items/figures/exemplar_budapest.png", "nc_exemplar_budapest"),
-    ("natcities_visual_items/figures/exemplar_palermo.png", "nc_exemplar_palermo"),
+    # Framework figures: the four pilot cities, Rome for the maps
+    ("visual_items/pilot_cities/fig_hazard_t2m_maps_rome.png", "framework_hazard_t2m_rome"),
+    ("visual_items/pilot_cities/fig_exposure_population_rome.png", "framework_exposure_rome"),
+    ("visual_items/pilot_cities/fig_svi_components_rome.png", "framework_svi_rome"),
+    ("visual_items/pilot_cities/fig_ac_penetration_maps_rome.png", "framework_ac_penetration_rome"),
+    ("visual_items/pilot_cities/fig_policy_levers.png", "framework_policy_levers"),
+    ("visual_items/pilot_cities/fig_cba_dashboard.png", "framework_cba_dashboard"),
+    # Cross-city results: the 40-city application
+    ("visual_items/multi_city/figures/fig1_risk_costs_portfolios.png", "results_risk_costs_portfolios"),
+    ("visual_items/multi_city/figures/fig2_distribution.png", "results_distribution"),
+    ("visual_items/multi_city/figures/fig3_synergies.png", "results_synergies"),
+    ("visual_items/multi_city/figures/fig4_city_maps.png", "results_city_maps"),
 ]
 
 LOGO_SOURCE = "logo_urbadapt.png"
@@ -157,8 +156,8 @@ def main() -> int:
 
     if missing:
         print(
-            "\nWARNING: not imported (are you on the `reporting` branch of "
-            "URBADAPT-HEAT?):",
+            "\nWARNING: not imported (generate them with the code under "
+            "visual_items/ in URBADAPT-HEAT first):",
             file=sys.stderr,
         )
         for rel in missing:

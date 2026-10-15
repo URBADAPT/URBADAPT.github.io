@@ -14,10 +14,12 @@ Given a European city, URBADAPT-HEAT:
 
 1. **Maps the heat hazard** at ~100 m resolution using the UrbClim urban climate
    dataset, for a 2020 baseline and climate projections to 2050 across four CMIP6
-   scenarios. Two hazard tracks are supported — a standard daily-mean track and
-   an extreme-event (heatwave) track for cool and maritime cities.
+   scenarios, reconciled with the ERA5-Land temperature reference on which the
+   impact functions were estimated.
 2. **Quantifies heat-attributable mortality** with age-stratified exposure and
-   city- and age-specific epidemiological impact functions.
+   city- and age-specific epidemiological impact functions, corrected for the
+   year-to-year temperature variability that a climatological baseline year
+   averages away.
 3. **Evaluates three adaptation pathways** — air conditioning, urban street
    trees, and early warning systems — through their physical mechanisms, and
    represents the interactions between them.
@@ -90,10 +92,10 @@ including data sync and the one-click Windows launcher, and
 |---|---|
 | [Installation & usage](heat/installation.md) | Setup, dependencies, data sync, running the notebook pipeline |
 | [Framework overview](heat/framework-overview.md) | Architecture, pipeline structure, spatial domain |
-| [Hazard](heat/hazard.md) | UrbClim T2M fields, synthetic baseline, climate deltas |
+| [Hazard](heat/hazard.md) | UrbClim T2M fields, synthetic baseline, ERA5-Land reconciliation, climate deltas |
 | [Exposure](heat/exposure.md) | Age-stratified population, WorldPop, demographic projections |
 | [Vulnerability](heat/vulnerability.md) | Social Vulnerability Index, dynamic projection |
-| [Impact functions](heat/impact-functions.md) | Age-specific heat-mortality dose-response curves |
+| [Impact functions](heat/impact-functions.md) | Age-specific heat-mortality dose-response curves, interannual variance correction |
 | [Adaptation pathways](heat/adaptation-pathways.md) | Air conditioning, street trees, early warning systems |
 | [Cost-benefit analysis](heat/cost-benefit-analysis.md) | 25-year CBA, interactions, budget optimisation |
 | [Uncertainty analysis](heat/uncertainty-analysis.md) | Structural, climate, and parametric sensitivity |
@@ -112,7 +114,8 @@ URBADAPT-HEAT builds on openly available datasets and published epidemiology:
 | Climate projections | CMIP6 ensemble deltas (CurPol, GS, SP, SSP5-8.5) |
 | Population | [WorldPop](https://www.worldpop.org/) gridded population |
 | Demographic projections | [Wittgenstein Centre](https://www.oeaw.ac.at/vid/data-and-information-systems/wittgenstein-centre-data-explorer) Human Capital Data Explorer |
-| Impact functions | Masselot et al., city- and age-specific (main); [Burke et al. 2025](https://doi.org/10.1038/s41591-024-03094-4) (sensitivity) |
+| Impact functions | [Masselot et al. 2023](https://doi.org/10.1016/S2542-5196(23)00023-2), city- and age-specific (main); [Burke et al. 2025](https://doi.org/10.1038/s41591-024-03094-4) (sensitivity) |
+| Temperature reference | ERA5-Land city temperature distributions distributed with Masselot et al. 2023 |
 | Risk engine | [CLIMADA v6.1.0](https://github.com/CLIMADA-project/climada_python) |
 
 ---

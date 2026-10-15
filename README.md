@@ -10,7 +10,7 @@ deployed to GitHub Pages by [`.github/workflows/deploy.yml`](.github/workflows/d
 | Content | Source | How it gets here |
 |---|---|---|
 | Documentation pages | [URBADAPT-HEAT wiki](https://github.com/URBADAPT/URBADAPT-HEAT/wiki) | Cloned and link-rewritten at build time by `scripts/sync_wiki.py`. **Never committed** — `docs/heat/` is gitignored. |
-| Figures | [URBADAPT-HEAT](https://github.com/URBADAPT/URBADAPT-HEAT) (`reporting` branch) | Imported and downscaled once by `scripts/import_figures.py`. **Committed**, because the figures live on a research branch that may be merged away. |
+| Figures | [URBADAPT-HEAT](https://github.com/URBADAPT/URBADAPT-HEAT) (`diagram.png` and the figures generated under `visual_items/`) | Imported and downscaled once by `scripts/import_figures.py`. **Committed**, because URBADAPT-HEAT tracks the code that draws the `visual_items/` figures but not the images. |
 | Landing, implementation and team pages | This repository | Hand-written: `docs/index.md`, `docs/urbadapt-heat.md`, `docs/team.md`. |
 
 `docs/index.md` is deliberately framework-level: anything specific to the heat
@@ -29,7 +29,7 @@ from the sync and redirects any link to it. It is still required to exist.
 ### Results gallery
 
 A results gallery page existed and was removed; only `workflow_diagram.webp` is
-currently displayed. The other twelve figures in `docs/assets/figures/` are kept
+currently displayed. The other ten figures in `docs/assets/figures/` are kept
 committed so the page can be restored without re-running the import.
 
 ## Local development
@@ -57,15 +57,16 @@ mkdocs build --strict
 
 ## Updating figures
 
-After regenerating figures in URBADAPT-HEAT, re-import and commit them:
+After regenerating figures in URBADAPT-HEAT (the code under `visual_items/` writes
+them there), re-import and commit them:
 
 ```bash
 python scripts/import_figures.py --source ../URBADAPT-HEAT
 git add docs/assets && git commit -m "Update figures"
 ```
 
-The script downscales to 1600 px and re-encodes as WebP (~11 MB of source PNGs
-becomes ~2.4 MB). It also rebuilds the logo assets and favicon from
+The script downscales to 1600 px and re-encodes as WebP (~9 MB of source PNGs
+becomes ~2.6 MB). It also rebuilds the logo assets and favicon from
 `logo_urbadapt.png`, keying out the white background.
 
 ## Adding or renaming a wiki page

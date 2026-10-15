@@ -62,6 +62,11 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+# Formulas in the wiki pages ($...$, $$...$$), typeset by MathJax.
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -91,6 +96,8 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.tilde
   - pymdownx.smartsymbols
